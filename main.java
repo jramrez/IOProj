@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -8,19 +9,25 @@ class Main {
     public static void main(String[] args) throws IOException {
         Scanner scan = new Scanner(System.in);
 
-        FileInputStream inputXYZ = null;
-        FileOutputStream outputXYZ = null;
-        FileReader readXYZ = new FileReader("outputfile.txt");
+        File inputXYZ = new File("inputfile.txt");
+        File outputXYZ = new File("outputfile.txt");
+        File testXYZ = new File("test.txt");
+        Scanner scanTest = new Scanner(testXYZ);
+        Scanner scanFile = new Scanner(inputXYZ);
+        scanFile.useDelimiter("  ");
+        boolean inputActive = true;
 
-        int distanceX = 0;
-        int distanceY = 0;
-        int distanceZ = 0;
-        while ((readXYZ.read()) != -1) {
-            distanceX += readXYZ.read();
+        try {
+            do {
+                
+                scanTest.nextLine();
+                inputActive = false;
+            } while (inputActive);
         }
-        inputXYZ.close();
-        outputXYZ.close();
-        readXYZ.close();
-        scan.close();
+        finally {
+            scan.close();
+            scanFile.close();    
+            scanTest.close();
+        }
     }
 }
